@@ -16,20 +16,11 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path
-from django.http import HttpResponse
-
-
-def blog(request):
-    return HttpResponse("blog")
-
-
-def home(request):
-    return HttpResponse("Página inicial")
+from django.urls import path, include
 
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("blog/", blog),
-    path("", home),
+    path('', include('home.urls')),
+    path('admin/', admin.site.urls),
+    path('blog/', include('blog.urls')),
 ]
